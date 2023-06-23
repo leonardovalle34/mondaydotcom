@@ -3,7 +3,7 @@ fullstack Developer test for Monday.com
 
 This project is dedicated to the FullStack test for Monday.com/Worktables
 
-Fist the main branch for this repo is the MASTER
+First the main branch for this repo is the MASTER
 
 anyone can join this project...
 
