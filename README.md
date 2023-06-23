@@ -21,5 +21,6 @@ how to run this project?
 3º-for each side of the project you have to run npm run dev (for the front) and npm run start (for the back)
 
 *important to mention that for this test the front end shoul be running on port 4000. (it's already configured)
+.....
 
 
