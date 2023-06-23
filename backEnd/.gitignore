@@ -1,0 +1,11 @@
+# Arquivos e pastas gerados pelo Node.js
+node_modules/
+dist/
+
+# Arquivos de configuração do ambiente
+.env
+
+# Arquivos de log
+logs/
+
+# Outros arquivos e pastas específicos do seu projeto
