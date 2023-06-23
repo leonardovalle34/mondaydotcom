@@ -1,17 +1,25 @@
 # mondaydotcom
 fullstack Developer test for Monday.com
 
-Hi everyone!
+This project is dedicated to the FullStack test for Monday.com/Worktables
 
-this is a repository dedicated to the Monday.com fullstack developer test.
+First the main branch for this repo is the MASTER
 
-this project is using:
+anyone can join this project...
 
-Vite + React + Typescript
+but its important to understand how to work with your branch.
 
-to run the project type:
-1º- Clone the repository into you machine!
-2º-inside the paste you cloned, in the terminal run: npm install
-3º-npm run dev (it should be running on port 4000)
+it's important if you want to code in this project you have to create a new branch called "yorname"'s-branch
+and then under your branch you can code.
 
-it should run on port 4000
+this project has a backend system and also a frontend system
+
+how to run this project? 
+
+1º-clone the repo to your local repo
+2º-via terminal you should enter in each paste and type: npm install
+3º-for each side of the project you have to run npm run dev (for the front) and npm run start (for the back)
+
+*important to mention that for this test the front end shoul be running on port 4000. (it's already configured)
+
+
