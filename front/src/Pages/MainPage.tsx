@@ -1,9 +1,12 @@
 import "./styles.css"
+import Modal from "../components/modal/Modal";
 import { useState } from "react"
 import { Search } from "monday-ui-react-core/icons";
+import { useModalContext } from "../contextApi/ModalContext";
 
 export default function MainPage(){
     const [searchField , setSearchField] = useState("");
+    const {isOpen , setIsOpen} = useModalContext()
 
     const handleSearchParam = (e:string)=>{
         setSearchField(e)
@@ -15,7 +18,7 @@ export default function MainPage(){
     return (
         <div className="MainCard">
             <div className="InsideDiv">
-            <h2>Filter</h2>
+                <h2>Filter</h2>
                 <input 
                 value={searchField} 
                 type="text"  
@@ -26,11 +29,13 @@ export default function MainPage(){
                 <button className="Button" onClick={()=>handleSubmit()}>
                     <Search />
                 </button>
-
             </div>
-            <div>
-
-            </div>
+            <button style = {{width : "10px" , height : "10px"}} onClick={()=>setIsOpen(true)}>teste</button>
+            {
+                isOpen &&(
+                    <Modal/>
+                )
+            }
         </div>
     )
 }
