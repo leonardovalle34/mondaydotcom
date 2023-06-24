@@ -3,9 +3,16 @@ const app = express();
 const port = 3000;
 
 app.get('/', (req, res) => {
-  res.send(`Servidor está rodando em http://localhost:${port}`);
+  res.send(`Server running at http://localhost:${port}`);
 });
 
+app.get('/teste', (req,res)=>{
+  res.send(
+    {
+      "name":"teste"
+    }
+  )
+})
 app.listen(port, () => {
-  console.log(`Servidor está rodando em http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });
