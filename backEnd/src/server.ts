@@ -17,7 +17,7 @@ app.use((req,res, next)=> {
   next()
 })
 
-app.get('/teste', async (req, res) => {
+app.get('/countries', async (req, res) => {
   try {
     const response = await axios.get('https://restcountries.com/v3.1/all');
     res.json(response.data); // Retorna a resposta da chamada API como um objeto JSON
