@@ -1,0 +1,38 @@
+.MainCard{
+    background-color: #fff;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    color: #000000;
+    
+}
+
+.InsideDiv{
+    display: flex;
+    margin: 10%;
+    gap: 12px;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.MainInput{
+    width: 70%;
+    height: 25px;
+    border-radius: 8px;
+    border: #979292 1px solid ;
+    box-shadow: #00000038 2px 2px 2px;
+    padding: 2px
+}
+.MainInput:hover{
+    transform : scale(1.1);
+    border: #0b0f46 1px solid ;
+}
+
+.Button{
+    border-radius: 8px;
+    box-shadow: #00000038 2px 2px 2px;
+    background-color: #00000027;
+}
