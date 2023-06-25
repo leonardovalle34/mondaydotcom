@@ -28,7 +28,7 @@ export default function MainPage(){
     }
 
     const test = async()=>{
-        const response = await axios.get('https://restcountries.com/v3.1/all');
+        const response = await axios.get('http://localhost:3000/teste');
         console.log(response)
     }
 
