@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Close } from "monday-ui-react-core/icons";
 import './Modal.css';
 import { useModalContext } from '../../contextApi/ModalContext';
