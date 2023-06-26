@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
 import { Close } from "monday-ui-react-core/icons";
 import './Modal.css';
 import { useModalContext } from '../../contextApi/ModalContext';
 
-export default function Modal() {
+export default function Modal(props : any) {
   const {isOpen , setIsOpen} = useModalContext()
+          const teste : any = []  
 
   return (
     <div>
@@ -16,9 +16,10 @@ export default function Modal() {
               <Close />
             </button>
             <div className="modalBody">
-              {/* Conteúdo do modal */}
-              <h2>Modal</h2>
-              <p>testanto modal</p>
+              <p>{props.name}</p>
+              <p>{props.capital}</p> 
+              <p>{props.region}</p>             
+              <p>{props.subregion}</p>
             </div>
           </div>
         </div>

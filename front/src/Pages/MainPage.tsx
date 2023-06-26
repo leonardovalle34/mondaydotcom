@@ -1,45 +1,61 @@
-import "./styles.css"
+import "./GlobalStyles.css"
 import Modal from "../components/modal/Modal";
 import { useState } from "react"
-import { Search } from "monday-ui-react-core/icons";
-import mondaySdk from 'monday-sdk-js'
 import { useModalContext } from "../contextApi/ModalContext";
 import axios from "axios";
 import { useEffect } from "react";
 
+
+interface Country {
+    name: {
+      common: string;
+    };
+    capital: string;
+    region: string;
+    subregion: string;
+    
+  }
+
 export default function MainPage(){
-    const sdk = mondaySdk()
+  
     const [searchField , setSearchField] = useState("");
+    const [countries , setCountries] = useState([]);
+    const [selectedCountries , setSelectedCountries] = useState(null);
     const {isOpen , setIsOpen} = useModalContext()
     
-    sdk.get("settings").then(res => {
-        // Add your code here to handle the response
-        console.log(res); // Example: Output the response to the console
-      }).catch(error => {
-        // Handle any errors that occurred during the API request
-        console.error("Error retrieving settings:", error);
-      });
 
     const handleSearchParam = (e:string)=>{
         setSearchField(e)
     }
-    const handleSubmit = ()=>{
-        console.log(searchField)
+    const handleClick = (country : any)=>{
+        setIsOpen(true)
+        setSelectedCountries(country)
+
     }
 
-    const test = async()=>{
-        const response = await axios.get('http://localhost:3000/teste');
-        console.log(response)
+    const init = async()=>{
+        const response : any = await axios.get('http://localhost:3000/countries');
+        const countriesList:any = response?.data?.sort((a:any,b:any)=>{
+            if(a.name.common < b.name.common){
+                return -1;
+            }
+            if(a.name.common > b.name.common){
+                return 1
+            }
+            return 0
+        })
+        setCountries(countriesList)
     }
+
 
     useEffect(()=>{
-        test()
+        init()
     },[])
 
     return (
         <div className="MainCard">
-            <div className="InsideDiv">
-                <h2>Filter</h2>
+            <div className="InsideCard">
+                <h2>Search</h2>
                 <input 
                 value={searchField} 
                 type="text"  
@@ -47,14 +63,50 @@ export default function MainPage(){
                 onChange={(e)=>{handleSearchParam(e.target.value)}}
                 >    
                 </input>
-                <button className="Button" onClick={()=>handleSubmit()}>
-                    <Search />
-                </button>
             </div>
-            <button style = {{width : "10px" , height : "10px"}} onClick={()=>setIsOpen(true)}>teste</button>
+            <div className="InsideDiv">
+                <div>
+                    <table className="mainTable">
+                    <thead>
+                               <tr>
+                                    <th>Country</th>
+                                    <th>Capital</th>
+                                    <th>Continent</th>
+                                    <th>Region</th>
+                                    <th>Subregion</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                            {
+                                countries?.map((el:any , i : number)=>{
+                                    return(
+                                        <tr key={i} className="tableRows">
+                                            <th className="clicableTh" onClick={()=>{handleClick(el)}}>{el.name.common}</th>
+                                            <th>{el.capital}</th>
+                                            <th>{el.continents.map((cont:string)=>{
+                                                return(
+                                                    cont
+                                                )
+                                            })}</th>
+                                            <th>{el.region}</th>
+                                            <th>{el.subregion}</th>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
             {
                 isOpen &&(
-                    <Modal/>
+                    <Modal
+                        name={selectedCountries?.name.common}
+                        capital={selectedCountries?.capital}
+                        region={selectedCountries?.region}
+                        subregion={selectedCountries?.subregion}
+                    />
                 )
             }
         </div>
