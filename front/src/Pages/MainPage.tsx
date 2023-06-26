@@ -1,32 +1,55 @@
-import "./styles.css"
+import "./GlobalStyles.css"
 import Modal from "../components/modal/Modal";
 import { useState } from "react"
-import { Search } from "monday-ui-react-core/icons";
 import { useModalContext } from "../contextApi/ModalContext";
 import axios from "axios";
 import { useEffect } from "react";
 
+
+interface Country {
+    name: {
+      common: string;
+    };
+    capital: string;
+    region: string;
+    subregion: string;
+    
+  }
+
 export default function MainPage(){
   
     const [searchField , setSearchField] = useState("");
-    const [countries , setCountries] = useState([])
+    const [countries , setCountries] = useState([]);
+    const [selectedCountries , setSelectedCountries] = useState(null);
     const {isOpen , setIsOpen} = useModalContext()
     
 
     const handleSearchParam = (e:string)=>{
         setSearchField(e)
     }
-    const handleSubmit = ()=>{
-        console.log(searchField)
+    const handleClick = (country : any)=>{
+        setIsOpen(true)
+        setSelectedCountries(country)
+
     }
 
-    const test = async()=>{
+    const init = async()=>{
         const response : any = await axios.get('http://localhost:3000/countries');
-        setCountries(response)
+        const countriesList:any = response?.data?.sort((a:any,b:any)=>{
+            if(a.name.common < b.name.common){
+                return -1;
+            }
+            if(a.name.common > b.name.common){
+                return 1
+            }
+            return 0
+        })
+        setCountries(countriesList)
     }
+
 
     useEffect(()=>{
-        test()
+        init()
     },[])
 
     return (
@@ -40,9 +63,6 @@ export default function MainPage(){
                 onChange={(e)=>{handleSearchParam(e.target.value)}}
                 >    
                 </input>
-                <button className="Button" onClick={()=>handleSubmit()}>
-                    <Search />
-                </button>
             </div>
             <div className="InsideDiv">
                 <div>
@@ -58,10 +78,10 @@ export default function MainPage(){
                             </thead>
                         <tbody>
                             {
-                                countries?.data?.map((el:any , i : number)=>{
+                                countries?.map((el:any , i : number)=>{
                                     return(
                                         <tr key={i} className="tableRows">
-                                            <th>{el.name.common}</th>
+                                            <th className="clicableTh" onClick={()=>{handleClick(el)}}>{el.name.common}</th>
                                             <th>{el.capital}</th>
                                             <th>{el.continents.map((cont:string)=>{
                                                 return(
@@ -79,10 +99,14 @@ export default function MainPage(){
                 </div>
 
             </div>
-            <button style = {{width : "10px" , height : "10px"}} onClick={()=>setIsOpen(true)}>teste</button>
             {
                 isOpen &&(
-                    <Modal/>
+                    <Modal
+                        name={selectedCountries?.name.common}
+                        capital={selectedCountries?.capital}
+                        region={selectedCountries?.region}
+                        subregion={selectedCountries?.subregion}
+                    />
                 )
             }
         </div>

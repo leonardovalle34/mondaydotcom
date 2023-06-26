@@ -4,7 +4,6 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    color: #000000;
     
 }
 
@@ -44,6 +43,10 @@
     background-color: #4b4e69;
     color: #fff;
   }
+
+  .clicableTh{
+    cursor: pointer;
+  }
   
   th, td {
     border: 1px solid grey; /* Adicionando a propriedade border */
@@ -52,7 +55,7 @@
   }
   
   th {
-    background-color: #transparent;
+    background-color: transparent;
   }
 
   
