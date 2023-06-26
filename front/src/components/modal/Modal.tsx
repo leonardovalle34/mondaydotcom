@@ -3,7 +3,8 @@ import './Modal.css';
 import { useModalContext } from '../../contextApi/ModalContext';
 
 export default function Modal(props : any) {
-  const {isOpen , setIsOpen} = useModalContext()   
+  const {isOpen , setIsOpen} = useModalContext()
+          const teste : any = []  
 
   return (
     <div>

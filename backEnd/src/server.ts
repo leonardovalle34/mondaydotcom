@@ -23,7 +23,7 @@ app.get('/countries', async (req, res) => {
     res.json(response.data); 
   } catch (error) {
     res.status(500).json({ error: 'Erro ao fazer a chamada de API' });
-  }
+  }  
 });
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
