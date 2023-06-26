@@ -1,10 +1,9 @@
 .MainCard{
-    background-color: #fff;
+    background-color: #181b34;;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
-    color: #000000;
     
 }
 
@@ -36,3 +35,33 @@
     box-shadow: #00000038 2px 2px 2px;
     background-color: #00000027;
 }
+
+.mainTable {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid grey; 
+    background-color: #4b4e69;
+    color: #fff;
+  }
+
+  .clicableTh{
+    cursor: pointer;
+  }
+  
+  th, td {
+    border: 1px solid grey; /* Adicionando a propriedade border */
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: transparent;
+  }
+
+  
+  
+  
+  
+  
+  
+  
