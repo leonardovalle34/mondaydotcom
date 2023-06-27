@@ -20,6 +20,7 @@ export default function Modal(props : any) {
               <p>{props.capital}</p> 
               <p>{props.region}</p>             
               <p>{props.subregion}</p>
+              <p>{props.weather.temp}</p>
             </div>
           </div>
         </div>

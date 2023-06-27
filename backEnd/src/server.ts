@@ -3,7 +3,7 @@ import express from "express"
 const app = express();
 const port = 3000;
 import axios from "axios";
-import ICountries from "./interface/Interface";
+import router from "./router";
 
 app.get('/', (req, res) => {
   res.send(`Server running at http://localhost:${port}`);
@@ -18,14 +18,8 @@ app.use((req,res, next)=> {
   next()
 })
 
-app.get('/countries', async (req, res) => {
-  try {
-    const response : ICountries = await axios.get('https://restcountries.com/v3.1/all');
-    res.json(response.data); 
-  } catch (error) {
-    res.status(500).json({ error: 'Erro ao fazer a chamada de API' });
-  }  
-});
+app.use("/",router)
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
