@@ -11,8 +11,9 @@ import Loading from "../components/loading/Loading";
 
 
 export default function MainPage(){
-    const [isLoading , setIsloading] = useState(false)
+    const [isLoading , setIsloading] = useState(true)
     const [searchField , setSearchField] = useState("");
+    const [previousSearchField , setPreviousSearchField] = useState("")
     const [originalCountries , setOriginalCountries] = useState([])
     const [countries , setCountries] = useState([]);
     const [selectedCountries , setSelectedCountries] = useState(null);
@@ -23,23 +24,52 @@ export default function MainPage(){
         return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
       };
 
-    const handleSearchParam = () => {//function to make the search
-        
-        if(searchField.length > 0){
-                const filteredItems = countries.filter((item : ICountries) =>{
-                    if(item.capital){
-                        const noAccentsCapital = removeAccents(item.capital[0].toLowerCase())
-                        const noAccentsParam = removeAccents(searchField.toLowerCase())
-                        return noAccentsCapital.includes(noAccentsParam)
-                    }
-                }
-            );
-            setCountries(filteredItems)
-        }else if(searchField.length === 0){
-            setCountries(originalCountries)
-        }
-      };
-    const handleClick = async(country : any)=>{
+    
+      const searchAhead = ()=>{//function made to make the search in case of any simple type in the input
+        const filteredItems = countries.filter((item : ICountries) =>{
+            if(item.capital){
+                const noAccentsCapital = removeAccents(item.capital[0].toLowerCase())
+                const noAccentsCommonName = removeAccents(item.name.common.toLowerCase());
+                const noAccentsRegion = removeAccents(item.region.toLowerCase());
+                //const noAccentsRegionSubregion = removeAccents(item.subregion.toLowerCase());
+                //const noAccentsFifa = removeAccents(item.fifa.toLowerCase());
+
+                const noAccentsParam = removeAccents(searchField.toLowerCase())
+                
+                return (
+                    noAccentsCapital.includes(noAccentsParam) || 
+                    noAccentsCommonName.includes(noAccentsParam) ||
+                    noAccentsRegion.includes(noAccentsParam) 
+                    //noAccentsRegionSubregion.includes(noAccentsParam) 
+                    //noAccentsFifa.includes(noAccentsParam)    
+                )
+            }
+        })
+        setCountries(filteredItems)
+      }
+      const searchBehind = ()=>{//function made to make the search in case of any simple type in the input
+        const filteredItems = originalCountries.filter((item : ICountries) =>{
+            if(item.capital){
+                const noAccentsCapital = removeAccents(item.capital[0].toLowerCase())
+                const noAccentsCommonName = removeAccents(item.name.common.toLowerCase());
+                const noAccentsRegion = removeAccents(item.region.toLowerCase());
+                //const noAccentsRegionSubregion = removeAccents(item.subregion.toLowerCase());
+                //const noAccentsFifa = removeAccents(item.fifa.toLowerCase());
+                const noAccentsParam = removeAccents(searchField.toLowerCase())
+                
+                return (
+                    noAccentsCapital.includes(noAccentsParam) || 
+                    noAccentsCommonName.includes(noAccentsParam) ||
+                    noAccentsRegion.includes(noAccentsParam)
+                    //noAccentsRegionSubregion.includes(noAccentsParam) 
+                    //noAccentsFifa.includes(noAccentsParam)    
+                )
+            }
+        })
+        setCountries(filteredItems)
+      }
+    
+    const handleClick = async(country : ICountries)=>{
         setIsOpen(true)
         setSelectedCountries(country)
         try{
@@ -51,10 +81,22 @@ export default function MainPage(){
 
     }
 
+    const preHandleSearch = async() =>{
+        if(searchField.length > 0){
+            if(previousSearchField.length < searchField.length){
+                searchAhead()
+            }else if(previousSearchField.length > searchField.length){
+                searchBehind()
+            }
+        }else if(searchField.length === 0){
+            setCountries(originalCountries)
+        }
+    }
+
     const init = async()=>{
         setIsloading(true)
         const response : ICountries = await axios.get('http://localhost:3000/countries');
-        const countriesList = response?.data?.sort((a:any,b:any)=>{
+        const countriesList:ICountries = response?.data?.sort((a:any,b:any)=>{
             if(a.name.common < b.name.common){
                 return -1;
             }
@@ -74,17 +116,20 @@ export default function MainPage(){
     },[])
 
     useEffect(()=>{
-        handleSearchParam()
-    }, [searchField])
+        setPreviousSearchField(searchField)
+        preHandleSearch()
+    },[searchField])
+
 
     return (
         <>
-        {isLoading === true ?
-            (
+        {
+            isLoading === true &&(
                 <Loading />
             )
-            :
-            (
+        }
+        {
+            isLoading === false && (
                 <div className="MainCard">
                     <div className="InsideCard">
                         <h2>Search</h2>
@@ -145,7 +190,6 @@ export default function MainPage(){
                     }
                 </div>
             )
-
         }
         </>
         
