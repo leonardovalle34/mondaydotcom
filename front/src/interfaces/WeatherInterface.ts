@@ -1,4 +1,4 @@
-export default interface IWeather{
+export interface IWeather{
     data:{
       coord: {
         lon: number;

@@ -23,7 +23,7 @@
   border: #979292 1px solid;
   box-shadow: #00000038 2px 2px 2px;
   padding: 2px;
-  color: black;
+  color: #fff;
 }
 .MainInput:hover {
   transform: scale(1.1);
