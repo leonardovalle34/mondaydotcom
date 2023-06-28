@@ -1,10 +1,10 @@
-import {Router} from "express";
-import Controller from "./controller/controller";
+import { Router } from 'express';
+import Controller from './controller/controller';
 
-const useController = new Controller
+const useController = new Controller();
 const router = Router();
 
-router.get("/countries", useController.getAllCountries)
-router.get("/weather" , useController.getWeatherData)
+router.get('/countries', useController.getAllCountries);
+router.get('/weather', useController.getWeatherData);
 
-export default router
+export default router;
