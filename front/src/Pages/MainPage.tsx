@@ -1,19 +1,15 @@
-import Table from "../components/table/Table"
-import Modal from "../components/modal/Modal"
-import { useModalContext } from "../contextApi/ModalContext"
+/* eslint-disable react/react-in-jsx-scope */
+import Table from '../components/table/Table';
+import Modal from '../components/modal/Modal';
+import { useModalContext } from '../contextApi/ModalContext';
 
-export default function MainPage(){
-    const {isOpen } = useModalContext()    
+export default function MainPage() {
+  const { isOpen } = useModalContext();
 
-
-    return (
-        <>
-            <Table />
-            {
-                isOpen === true &&(
-                    <Modal />
-                )
-            }
-        </>
-    )
+  return (
+    <>
+      <Table />
+      {isOpen === true && <Modal />}
+    </>
+  );
 }
