@@ -1,5 +1,6 @@
-export default interface IWeather{
-  data:{
+/* eslint-disable semi */
+export default interface IWeather {
+  data: {
     coord: {
       lon: number;
       lat: number;
@@ -39,6 +40,5 @@ export default interface IWeather{
     id: number;
     name: string;
     cod: number;
-  }
+  };
 }
-  
