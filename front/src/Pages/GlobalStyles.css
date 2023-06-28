@@ -1,67 +1,60 @@
-.MainCard{
-    background-color: #181b34;;
-    width: 100vw;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    
+.MainCard {
+  background-color: #181b34;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.InsideDiv{
-    display: flex;
-    margin: 10%;
-    gap: 12px;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    align-items: flex-start;
+.InsideDiv {
+  display: flex;
+  margin: 10%;
+  gap: 12px;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.MainInput{
-    width: 70%;
-    height: 25px;
-    border-radius: 8px;
-    border: #979292 1px solid ;
-    box-shadow: #00000038 2px 2px 2px;
-    padding: 2px
+.MainInput {
+  width: 70%;
+  height: 25px;
+  border-radius: 8px;
+  border: #979292 1px solid;
+  box-shadow: #00000038 2px 2px 2px;
+  padding: 2px;
+  color: #fff;
 }
-.MainInput:hover{
-    transform : scale(1.1);
-    border: #0b0f46 1px solid ;
+.MainInput:hover {
+  transform: scale(1.1);
+  border: #0b0f46 1px solid;
 }
 
-.Button{
-    border-radius: 8px;
-    box-shadow: #00000038 2px 2px 2px;
-    background-color: #00000027;
+.Button {
+  border-radius: 8px;
+  box-shadow: #00000038 2px 2px 2px;
+  background-color: #00000027;
 }
 
 .mainTable {
-    border-collapse: collapse;
-    width: 100%;
-    border: 1px solid grey; 
-    background-color: #4b4e69;
-    color: #fff;
-  }
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid grey;
+  background-color: #4b4e69;
+  color: #fff;
+}
 
-  .clicableTh{
-    cursor: pointer;
-  }
-  
-  th, td {
-    border: 1px solid grey; /* Adicionando a propriedade border */
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: transparent;
-  }
+.clicableTh {
+  cursor: pointer;
+}
 
-  
-  
-  
-  
-  
-  
-  
+th,
+td {
+  border: 1px solid grey; /* Adicionando a propriedade border */
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: transparent;
+}
