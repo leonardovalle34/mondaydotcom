@@ -1,9 +1,10 @@
 .MainCard {
   background-color: #181b34;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .InsideDiv {
@@ -17,17 +18,18 @@
 }
 
 .MainInput {
-  width: 70%;
+  width: 20%;
   height: 25px;
   border-radius: 8px;
   border: #979292 1px solid;
   box-shadow: #00000038 2px 2px 2px;
   padding: 2px;
   color: #fff;
+  margin: 10px;
 }
 .MainInput:hover {
-  transform: scale(1.1);
-  border: #0b0f46 1px solid;
+  transform: scale(1.2);
+  border: #ffffff 1px solid;
 }
 
 .Button {
@@ -36,11 +38,23 @@
   background-color: #00000027;
 }
 
+.tableWrapper {
+  width: auto;
+  max-width: 100%;
+  height: 500px;
+  overflow: auto;
+}
+
+.tableScroll {
+  position: relative;
+}
+
 .mainTable {
   border-collapse: collapse;
   width: 100%;
+  table-layout: fixed;
   border: 1px solid grey;
-  background-color: #4b4e69;
+  background-color: #4b4e69 !important;
   color: #fff;
 }
 
@@ -50,11 +64,15 @@
 
 th,
 td {
-  border: 1px solid grey; /* Adicionando a propriedade border */
+  position: sticky;
+  border: 1px solid grey;
   padding: 8px;
   text-align: left;
 }
 
-th {
-  background-color: transparent;
+@media screen and (max-width: 480px) {
+  .mainTable {
+    font-size: 9px;
+    word-break: break-word;
+  }
 }

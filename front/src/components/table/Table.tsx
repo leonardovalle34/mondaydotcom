@@ -1,12 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
-import '../../Pages/GlobalStyles.css';
+import '../../GlobalStyles.css';
 import { useState } from 'react';
 import { useModalContext } from '../../contextApi/ModalContext';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { ICountries } from '../../interfaces/CountriesInterface';
 import Loading from '../loading/Loading';
-
+import Th from '../th/Th';
+import ThRegion from '../th/ThRegion';
 export default function Table() {
   const [searchField, setSearchField] = useState('');
   const [previousSearchField, setPreviousSearchField] = useState('');
@@ -117,62 +118,73 @@ export default function Table() {
         <Loading />
       ) : (
         <div className="MainCard">
-          <div className="InsideCard">
-            <h2>Search</h2>
-            <input
-              value={searchField}
-              type="text"
-              placeholder="Type your search"
-              className="MainInput"
-              onChange={(e) => {
-                setSearchField(e.target.value);
-              }}
-            ></input>
-          </div>
-          <div className="InsideDiv">
-            {countries?.length === 0 ? (
-              <div>
-                <h2>No matches for your search try again.. :(</h2>
-              </div>
-            ) : (
-              <div>
-                <table className="mainTable">
-                  <thead>
-                    <tr>
-                      <th>Country</th>
-                      <th>Capital</th>
-                      <th>Continent</th>
-                      <th>Region</th>
-                      <th>Subregion</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {countries?.map((el: any, i: number) => {
-                      return (
-                        <tr key={i} className="tableRows">
-                          <th
-                            className="clicableTh"
-                            onClick={() => {
-                              handleClick(el);
-                            }}
-                          >
-                            {el.name.common}
-                          </th>
-                          <th>{el.capital}</th>
-                          <th>
-                            {el.continents.map((cont: string) => {
-                              return cont;
-                            })}
-                          </th>
-                          <th>{el.region}</th>
-                          <th>{el.subregion}</th>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            )}
+          <div className="tableScroll">
+            <div className="InsideCard">
+              <h2>Search</h2>
+              <input
+                value={searchField}
+                type="text"
+                placeholder="Type your search"
+                className="MainInput"
+                onChange={(e) => {
+                  setSearchField(e.target.value);
+                }}
+              ></input>
+            </div>
+            <div className="InsideDiv">
+              {countries?.length === 0 ? (
+                <div>
+                  <h2>No matches for your search try again.. :(</h2>
+                </div>
+              ) : (
+                <div className="tableWrapper">
+                  <table className="mainTable">
+                    <thead>
+                      <tr>
+                        <th>Country</th>
+                        <th>Capital</th>
+                        <th>Continent</th>
+                        <th>Region</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Area</th>
+                        <th>Abbr</th>
+                        <th>GoogleMap</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {countries?.map((el: ICountries, i: number) => {
+                        return (
+                          <tr key={i} className="tableRows">
+                            <th
+                              className="clicableTh"
+                              onClick={() => {
+                                handleClick(el);
+                              }}
+                            >
+                              {el?.name.common}
+                            </th>
+                            <th>{el?.capital}</th>
+                            {console.log(el?.capital, el?.name.common, el?.subregion)}
+                            <Th continent={el?.region} />
+                            <ThRegion subContinent={el?.subregion} />
+                            <th>{el?.latlng[0].toFixed(2)}</th>
+                            <th>{el?.latlng[1].toFixed(2)}</th>
+                            <th>{el?.area}</th>
+                            <th>{el?.cca2}</th>
+                            <th>
+                              <a href={el.maps.googleMaps} target="_blank" rel="noreferrer">
+                                Map
+                              </a>
+                            </th>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
