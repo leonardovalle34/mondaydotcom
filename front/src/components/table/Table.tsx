@@ -147,7 +147,7 @@ export default function Table() {
                         <th>Region</th>
                         <th>Latitude</th>
                         <th>Longitude</th>
-                        <th>Area</th>
+                        <th>Area m²</th>
                         <th>Abbr</th>
                         <th>GoogleMap</th>
                       </tr>

@@ -25,7 +25,7 @@
   box-shadow: #00000038 2px 2px 2px;
   padding: 2px;
   color: #fff;
-  margin: 10px;
+  margin: 44px;
 }
 .MainInput:hover {
   transform: scale(1.2);
@@ -51,7 +51,7 @@
 
 .mainTable {
   border-collapse: collapse;
-  width: 100%;
+  width: 500;
   table-layout: fixed;
   border: 1px solid grey;
   background-color: #4b4e69 !important;
@@ -61,17 +61,29 @@
 .clicableTh {
   cursor: pointer;
 }
+thead > tr > th {
+  position: sticky;
+  top: 0;
+  font-weight: 900;
+  background-color: #704ab8;
+  color: black;
+}
 
 th,
 td {
-  position: sticky;
   border: 1px solid grey;
   padding: 8px;
   text-align: left;
+  background-color: #4b4e69;
+}
+
+a {
+  background-color: #4b4e69;
 }
 
 @media screen and (max-width: 480px) {
   .mainTable {
+    width: 500px;
     font-size: 9px;
     word-break: break-word;
   }
