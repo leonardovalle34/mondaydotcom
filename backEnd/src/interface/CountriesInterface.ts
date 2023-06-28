@@ -85,5 +85,5 @@ export default interface ICountries{
             regex: string;
         };
       
+    }
 }
-
