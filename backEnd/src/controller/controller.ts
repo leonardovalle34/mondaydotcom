@@ -16,7 +16,7 @@ class Controller {
   async getWeatherData(req: Request, res: Response) {
     const cityName = req.query.capital;
     try {
-      const response = await axios.get(
+      const response: IWeather = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=080bd2a75c46d442c8f7255a11386c69&units=metric`
       );
       const apiResponse = response.data;
