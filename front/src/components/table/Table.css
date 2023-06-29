@@ -1,3 +1,7 @@
+.insideCard {
+  display: flex;
+  margin-top: 10px;
+}
 .MainCard {
   background-color: #181b34;
   width: 100%;
@@ -9,7 +13,7 @@
 
 .InsideDiv {
   display: flex;
-  margin: 10%;
+  margin: 6%;
   gap: 12px;
   flex-direction: row;
   align-content: center;
@@ -25,11 +29,14 @@
   box-shadow: #00000038 2px 2px 2px;
   padding: 2px;
   color: #fff;
-  margin: 44px;
+  margin: 0px 44px 0px 44px;
+  position: relative;
+  transition: transform 1s linear;
 }
+
 .MainInput:hover {
   transform: scale(1.2);
-  border: #ffffff 1px solid;
+  border: #d5ff19 1px solid;
 }
 
 .Button {
@@ -83,10 +90,40 @@ a {
   background-color: #4b4e69;
 }
 
+.divSearchInput {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.divInputs {
+  display: flex;
+  flex-direction: column;
+  width: 145px;
+}
+.divInputs > div > div {
+  padding: 4px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.btnDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px;
+}
+
+.btn {
+  border-radius: 8px;
+  width: 100px;
+  height: 30px;
+}
 @media screen and (max-width: 480px) {
   .mainTable {
     width: 500px;
     font-size: 9px;
     word-break: break-word;
+  }
+  .insideCard {
+    flex-direction: column;
   }
 }
