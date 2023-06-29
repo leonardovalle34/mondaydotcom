@@ -4,15 +4,15 @@ export default function Th(continent: string) {
   let backgroundColorDiv = '';
 
   if (continentParam === 'asia') {
-    backgroundColorDiv = 'blue';
+    backgroundColorDiv = '#343495';
   } else if (continentParam === 'americas') {
-    backgroundColorDiv = 'green';
+    backgroundColorDiv = '#4ed74e';
   } else if (continentParam === 'africa') {
-    backgroundColorDiv = 'red';
+    backgroundColorDiv = '#c55a5a';
   } else if (continentParam === 'europe') {
-    backgroundColorDiv = 'purple';
+    backgroundColorDiv = '#e767e7';
   } else if (continentParam === 'oceania') {
-    backgroundColorDiv = 'yellow';
+    backgroundColorDiv = '#d5d542';
   }
 
   return (

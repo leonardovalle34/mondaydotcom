@@ -1,5 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
-import '../../GlobalStyles.css';
+import './Table.css';
+import { Search } from 'monday-ui-react-core/icons';
 import { useState } from 'react';
 import { useModalContext } from '../../contextApi/ModalContext';
 import axios from 'axios';
@@ -12,6 +13,7 @@ export default function Table() {
   const [searchField, setSearchField] = useState('');
   const [previousSearchField, setPreviousSearchField] = useState('');
   const [originalCountries, setOriginalCountries] = useState([]);
+  const [continentSearch, setContinentSearch] = useState([]);
 
   const { setIsOpen } = useModalContext();
   const { isLoading, setIsLoading } = useModalContext();
@@ -119,17 +121,56 @@ export default function Table() {
       ) : (
         <div className="MainCard">
           <div className="tableScroll">
-            <div className="InsideCard">
-              <h2>Search</h2>
+            <div className="insideCard">
+              <h3>Search</h3>
               <input
                 value={searchField}
                 type="text"
-                placeholder="Type your search"
+                placeholder="Type your search eg: washington"
                 className="MainInput"
                 onChange={(e) => {
                   setSearchField(e.target.value);
                 }}
               ></input>
+              <div>
+                <h3>Search by continent: </h3>
+                <div className="divSearchInput">
+                  <div className="divInputs">
+                    <div>
+                      <div style={{ backgroundColor: '#4ed74e', color: 'black' }}>
+                        <input type="checkbox" name="check" value="americas" />
+                        Americas
+                      </div>
+                    </div>
+                    <div>
+                      <div style={{ backgroundColor: '#d5d542', color: 'black' }}>
+                        <input type="checkbox" name="check" value="oceania" /> Oceania
+                      </div>
+                    </div>
+                    <div>
+                      <div style={{ backgroundColor: '#c55a5a', color: 'black' }}>
+                        <input type="checkbox" name="check" value="africa" /> Africa
+                      </div>
+                    </div>
+                    <div>
+                      <div style={{ backgroundColor: '#e767e7', color: 'black' }}>
+                        <input type="checkbox" name="check" value="europe" /> Europe
+                      </div>
+                    </div>
+                    <div>
+                      <div style={{ backgroundColor: 'blue', color: 'black' }}>
+                        <input type="checkbox" name="check" value="asia" /> Asia
+                      </div>
+                    </div>
+                  </div>
+                  <div className="btnDiv">
+                    <button className="btn">
+                      <Search />
+                    </button>
+                    <button className="btn">Clear fields</button>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="InsideDiv">
               {countries?.length === 0 ? (
