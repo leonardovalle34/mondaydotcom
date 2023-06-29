@@ -137,7 +137,13 @@ export default function Table() {
                 <div className="divSearchInput">
                   <div className="divInputs">
                     <div>
-                      <div style={{ backgroundColor: '#4ed74e', color: 'black' }}>
+                      <div
+                        style={{
+                          backgroundColor: '#4ed74e',
+                          color: 'black',
+                          borderTopRightRadius: '8px',
+                        }}
+                      >
                         <input type="checkbox" name="check" value="americas" />
                         Americas
                       </div>
@@ -158,7 +164,13 @@ export default function Table() {
                       </div>
                     </div>
                     <div>
-                      <div style={{ backgroundColor: 'blue', color: 'black' }}>
+                      <div
+                        style={{
+                          backgroundColor: 'blue',
+                          color: 'black',
+                          borderBottomRightRadius: '8px',
+                        }}
+                      >
                         <input type="checkbox" name="check" value="asia" /> Asia
                       </div>
                     </div>
