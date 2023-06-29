@@ -56,3 +56,15 @@
   text-align: center;
   margin: 12px;
 }
+
+.weatherDiv > p > p {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+
+.buttonForC {
+  margin: 10px;
+  font-size: 1rem;
+}

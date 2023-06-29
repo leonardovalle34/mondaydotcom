@@ -13,10 +13,10 @@ export default function Table() {
   const [previousSearchField, setPreviousSearchField] = useState('');
   const [originalCountries, setOriginalCountries] = useState([]);
 
-  const { isOpen, setIsOpen } = useModalContext();
+  const { setIsOpen } = useModalContext();
   const { isLoading, setIsLoading } = useModalContext();
   const { countries, setCountries } = useModalContext();
-  const { selectedCountries, setSelectedCountries } = useModalContext();
+  const { setSelectedCountries } = useModalContext();
 
   const removeAccents = (text: string) => {
     //function to remove accents used mostly on the search
@@ -165,7 +165,6 @@ export default function Table() {
                               {el?.name.common}
                             </th>
                             <th>{el?.capital}</th>
-                            {console.log(el?.capital, el?.name.common, el?.subregion)}
                             <Th continent={el?.region} />
                             <ThRegion subContinent={el?.subregion} />
                             <th>{el?.latlng[0].toFixed(2)}</th>

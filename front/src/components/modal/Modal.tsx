@@ -58,6 +58,7 @@ export default function Modal() {
   const { setIsOpen } = useModalContext();
   const { isLoadingModal, setIsLoadingModal } = useModalContext();
   const { selectedCountries } = useModalContext();
+  const [celsiusOrFarenheght, setCelsiusOrFarenheght] = useState('c');
 
   const handleData = async () => {
     setIsLoadingModal(true);
@@ -200,7 +201,7 @@ export default function Modal() {
                 </p>
               </div>
               <div className="weatherDiv">
-                <h3>Weather</h3>
+                <h2>Weather</h2>
                 <p>
                   {selectedCountries?.capital ? (
                     <>
@@ -219,16 +220,12 @@ export default function Modal() {
                     <>
                       <p>
                         <Location />
-                        <strong>{selectedCountries?.capital}</strong>
-                      </p>
-                      <p>
-                        <ItemHeightTriple /> {weather?.main?.temp} cº
+                        {selectedCountries?.capital}
                       </p>
                     </>
                   ) : (
                     <>
-                      <strong> {selectedCountries?.capital} : </strong>
-                      <p>No data</p>
+                      {selectedCountries?.capital} :<p>No data</p>
                     </>
                   )}
                 </p>
@@ -236,16 +233,19 @@ export default function Modal() {
                   {selectedCountries?.capital ? (
                     <>
                       <p>
-                        <MoveArrowUp />
-                        {weather?.main?.temp_max} cº
+                        <ItemHeightTriple />{' '}
+                        {celsiusOrFarenheght === 'c' ? (
+                          <p>{weather?.main?.temp.toFixed(1)}°C</p>
+                        ) : (
+                          <p>{(weather?.main?.temp * 1.8 + 32).toFixed(1)}°F</p>
+                        )}
                       </p>
                     </>
                   ) : (
                     <>
-                      <strong>
-                        <MoveArrowUp />
-                      </strong>
-                      <p>No data</p>
+                      <p>
+                        <ItemHeightTriple /> : No data
+                      </p>
                     </>
                   )}
                 </p>
@@ -253,8 +253,32 @@ export default function Modal() {
                   {selectedCountries?.capital ? (
                     <>
                       <p>
-                        <MoveArrowDown />
-                        {weather?.main?.temp_min} cº
+                        <MoveArrowUp />{' '}
+                        {celsiusOrFarenheght === 'c' ? (
+                          <p>{weather?.main?.temp_max.toFixed(0)}°C</p>
+                        ) : (
+                          <p>{Math.ceil(weather?.main?.temp_max * 1.8 + 32).toFixed(0)}°F</p>
+                        )}
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        <MoveArrowUp /> No data
+                      </p>
+                    </>
+                  )}
+                </p>
+                <p>
+                  {selectedCountries?.capital ? (
+                    <>
+                      <p>
+                        <MoveArrowDown />{' '}
+                        {celsiusOrFarenheght === 'c' ? (
+                          <p>{weather?.main?.temp_min.toFixed(0)}°C</p>
+                        ) : (
+                          <p>{Math.floor(weather?.main?.temp_min * 1.8 + 32).toFixed(0)}°F</p>
+                        )}
                       </p>
                     </>
                   ) : (
@@ -267,42 +291,50 @@ export default function Modal() {
                 <p>
                   {selectedCountries?.capital ? (
                     <>
-                      <strong>Feels Like: </strong>
-                      <p>{weather?.main?.feels_like} cº</p>
+                      <p>
+                        {celsiusOrFarenheght === 'c' ? (
+                          <p>Feels Like: {weather?.main?.feels_like.toFixed(0)}°C</p>
+                        ) : (
+                          <p>Feels Like: {(weather?.main?.feels_like * 1.8 + 32).toFixed(0)}°F</p>
+                        )}
+                      </p>
                     </>
                   ) : (
                     <>
-                      <strong>Feels Like: </strong>
-                      <p>No data</p>
+                      <p>Feels Like: No data</p>
                     </>
                   )}
                 </p>
                 <p>
                   {selectedCountries?.capital ? (
                     <>
-                      <strong>Humidity: </strong>
-                      <p>{weather?.main?.humidity}%</p>
+                      <p>Humidity: {weather?.main?.humidity}%</p>
                     </>
                   ) : (
                     <>
-                      <strong>Humidity: </strong>
-                      <p>No data</p>
+                      <p>Humidity: No data</p>
                     </>
                   )}
                 </p>
                 <p>
                   {selectedCountries?.capital ? (
                     <>
-                      <strong>wind speed: </strong>
-                      <p>{weather?.wind?.speed} km/h</p>
+                      <p>wind speed: {weather?.wind?.speed} km/h</p>
                     </>
                   ) : (
                     <>
-                      <strong>Wind speed: </strong>
-                      <p>No data</p>
+                      <p>Wind speed: No data</p>
                     </>
                   )}
                 </p>
+                <div>
+                  <button className="buttonForC" onClick={() => setCelsiusOrFarenheght('f')}>
+                    F°
+                  </button>
+                  <button className="buttonForC" onClick={() => setCelsiusOrFarenheght('c')}>
+                    C°
+                  </button>
+                </div>
               </div>
             </div>
           )}

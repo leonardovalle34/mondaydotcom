@@ -1,0 +1,11 @@
+.weatherDiv {
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weatherDiv > p {
+  text-align: center;
+  margin: 12px;
+}
