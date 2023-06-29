@@ -67,6 +67,8 @@ thead > tr > th {
   font-weight: 900;
   background-color: #704ab8;
   color: black;
+  top: -1px;
+  border: none;
 }
 
 th,
