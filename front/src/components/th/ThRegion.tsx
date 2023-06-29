@@ -4,8 +4,6 @@ export default function ThRegion(subContinent: string) {
   let continentParam = '';
   if (subContinent.subContinent !== undefined) {
     continentParam = subContinent.subContinent.toLowerCase();
-  } else if (subContinent === undefined) {
-    console.log('aki');
   }
   let backgroundColorDiv = '';
 
