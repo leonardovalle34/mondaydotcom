@@ -1,14 +1,13 @@
-import MainPage from "./Pages/MainPage"
-import { ModalState } from "./contextApi/ModalContext"
-
+/* eslint-disable react/react-in-jsx-scope */
+import MainPage from './Pages/MainPage';
+import { ModalState } from './contextApi/ModalContext';
 
 function App() {
-
   return (
     <ModalState>
-      <MainPage/>
+      <MainPage />
     </ModalState>
-  )
+  );
 }
 
-export default App
+export default App;

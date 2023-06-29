@@ -1,4 +1,5 @@
 export interface ICountries {
+  [x: string]: ReactNode;
   data: {
     name: {
       common: string;
